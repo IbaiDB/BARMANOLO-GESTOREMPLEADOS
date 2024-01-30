@@ -6,12 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/commons-digester-2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/itextpdf-5.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/itext-pdfa-5.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/jasperreports-6.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ibi/Desktop/ASIGNATURAS/DDI2/DDI/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="/home/ibai/Descargas/mysql-connector-java-8.0.17-sources.jar"/>
+	<classpathentry kind="lib" path="/home/ibai/Descargas/lib/mysql-connector-java-5.1.49.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
