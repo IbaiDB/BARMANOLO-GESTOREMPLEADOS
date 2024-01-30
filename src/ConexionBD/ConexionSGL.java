@@ -7,12 +7,12 @@ public class ConexionSGL {
 	private static ConexionSGL instancia = null;
 	private static Connection con;
 	private ConexionSGL () {
-		String host = "127.0.0.1"; //Podríamos poner "localhost"
+		String host = "localhost"; //Podríamos poner "localhost"
 		String user = "root";
-		String pass = "";
+		String pass = "ibi20033";
 		String dtbs = "bar_manolo";
 		try{
-			Class.forName("com.mysql.jdbc.Driver"); //Inicializar el driver
+			Class.forName("com.mysql.jdbc.Driver");
 			String newConnectionURL = "jdbc:mysql://" + host + "/" + dtbs + "?" + "user=" + user + "&password=" + pass;
 			con = DriverManager.getConnection(newConnectionURL);
 		}catch (Exception e) {
