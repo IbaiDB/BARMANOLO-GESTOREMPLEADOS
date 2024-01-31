@@ -24,6 +24,7 @@ public class UsoChat extends JDialog {
 
 
 	public UsoChat(int pk) {
+		
 		setBounds(100, 100, 1019, 596);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(117, 180, 249));
@@ -49,6 +50,8 @@ public class UsoChat extends JDialog {
 		contentPanel.add(menuBar);
 		
 		JMenu mnVolver = new JMenu("VOVLER");
+		
+		
 		mnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
