@@ -11,7 +11,7 @@ public class ConexionMensajesHorario {
 
 			try {
 			   // Crear un objeto URL con la dirección de la API
-	        URL url = new URL("https://barmanolo.onrender.com/api/leer/mensajes");
+	        URL url = new URL(urlAPI);
 
 	        // Abrir una conexión a la URL
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));

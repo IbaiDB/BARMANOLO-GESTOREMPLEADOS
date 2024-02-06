@@ -20,11 +20,17 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import java.awt.Cursor;
+import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.SystemColor;
 import java.awt.Insets;
 import javax.swing.BoxLayout;
+import java.awt.Window.Type;
+import javax.swing.JButton;
+import java.awt.Component;
 
 
 public class GestorEmpleados extends JDialog {
@@ -45,10 +51,12 @@ public class GestorEmpleados extends JDialog {
 	//--------------------------------------------------XML AUTOMATICO ------------------------------------------
 
 	public GestorEmpleados() {
+		setResizable(false);
+		setModal(true);
 		
 		setBounds(100, 100, 900, 495);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(SystemColor.desktop);
+		contentPanel.setBackground(new Color(0, 206, 209));
 		contentPanel.setForeground(new Color(117, 180, 249));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -87,32 +95,33 @@ public class GestorEmpleados extends JDialog {
 		tablaEmpleados.getColumnModel().getColumn(5).setPreferredWidth(110);
 		scrollPane.setViewportView(tablaEmpleados);
 		
-	//-----------------------------------------------------------------------------------------------------------
-
-	//--------------------------------------------------LISTENERS -----------------------------------------------
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBounds(0, 74, 253, 391);
 		contentPanel.add(panelMenu);
-		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.X_AXIS));
+		panelMenu.setLayout(null);
 
 		JMenuBar mbOpciones = new JMenuBar();
+		mbOpciones.setBounds(0, 0, 253, 391);
+		mbOpciones.setBorderPainted(false);
+
 		panelMenu.add(mbOpciones);
-		mbOpciones.setForeground(SystemColor.text);
-		mbOpciones.setBackground(SystemColor.desktop);
+		mbOpciones.setForeground(new Color(255, 255, 255));
+		mbOpciones.setBackground(new Color(0, 206, 209));
 		mbOpciones.setFont(new Font("Montserrat", Font.BOLD, 12));
 		mbOpciones.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		mbOpciones.setLayout(new BoxLayout(mbOpciones, BoxLayout.Y_AXIS)); // Cambiado a BoxLayout.Y_AXIS
+		mbOpciones.setLayout(new BoxLayout(mbOpciones, FlowLayout.CENTER)); // Cambiado a BoxLayout.Y_AXIS
 
+		
 		JMenu mnAlta = new JMenu("ALTA EMPLEADO");
-		mbOpciones.add(mnAlta);
-
-		mnAlta.setForeground(SystemColor.text);
-		
-		
+		mnAlta.setFocusable(false);
 		mnAlta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mnAlta.setHorizontalAlignment(SwingConstants.CENTER);
-		mbOpciones.add(mnAlta);
+		mnAlta.setForeground(SystemColor.text);
+		mnAlta.setBorderPainted(false);
 		
+		
+		mnAlta.setSelected(false);
+		mbOpciones.add(mnAlta);
 		JMenu mnModificar = new JMenu("MODIFICAR EMPLEADO");
 		mnModificar.setForeground(SystemColor.text);
 		mnModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -125,6 +134,11 @@ public class GestorEmpleados extends JDialog {
 		
 		JMenu mnConsulta = new JMenu("REVISAR INFORMACIÓN DETALLADA");
 		mnConsulta.setForeground(SystemColor.text);
+		
+	//-----------------------------------------------------------------------------------------------------------
+
+	//--------------------------------------------------LISTENERS -----------------------------------------------
+
 		mnAlta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -134,10 +148,17 @@ public class GestorEmpleados extends JDialog {
 				
 			}
 		});
+		
+		
+		
 		mnModificar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+		        mnAlta.setOpaque(false);
+				
+		        mnAlta.setBackground((new Color(0, 0, 0, 0)));
+
 				int filaselec = tablaEmpleados.getSelectedRow();
 				
 				if(filaselec != -1) {
@@ -174,6 +195,9 @@ public class GestorEmpleados extends JDialog {
 				
 			}
 		});
+		
+		
+		
 		mnBaja.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

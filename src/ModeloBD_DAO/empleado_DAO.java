@@ -18,7 +18,8 @@ public class empleado_DAO implements Patron_DAO<empleado_DTO> {
 	private static final String SQL_UPDATE = "UPDATE empleados SET nombre = ?, tipo = ?, dni = ?, permisoChat = ?, telefono = ?, NumSegSoc = ?, fNacimiento = ?, Email = ?, salario = ? WHERE id_emple = ?";
 	private static final String SQL_FIND = "SELECT * FROM empleados WHERE id_emple = ?";
 	private static final String SQL_FINDALL = "SELECT * FROM empleados";
-				
+	private static final String SQL_FINDBYDNI = "SELECT * FROM empleados WHERE dni = ?";
+
 	//-------------------------------------------------------------REALIZAR CONEXIÓN-------------------------------------------------------------------
 			
 	private ConexionSGL con = ConexionSGL.getInstancia();				
@@ -148,6 +149,24 @@ public class empleado_DAO implements Patron_DAO<empleado_DTO> {
 		return e1;
 	}
 	
+	public empleado_DTO buscarPorDNI(Object pk) {
+		// TODO Auto-generated method stub
+		empleado_DTO e1 = null;
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(SQL_FINDBYDNI);
+			ps.setString(1, (String)pk);
+			
+			ResultSet rs = ps.executeQuery(); 
+			
+			while(rs.next()==true) {
+				e1 = new empleado_DTO(rs.getInt(1), rs.getString(2), rs.getBoolean(3), rs.getString(4), rs.getBoolean(5), rs.getInt(6), rs.getLong(7), rs.getString(8), rs.getString(9), rs.getDouble(10));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return e1;
+	}
 	//-----------------------------------------------------GENERAR ARRAYLIST DE SU DTO-----------------------------------------------------------------
 
 	@Override
