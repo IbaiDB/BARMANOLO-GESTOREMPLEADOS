@@ -14,17 +14,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.Font;
 import java.awt.Cursor;
-import javax.swing.border.SoftBevelBorder;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import interfazRMI.interfazRMI;
+import ConexionBD.ConexionMensajesHorario;
+import ModeloBD_DTO.mensaje_DTO;
 
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.rmi.Naming;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.CompoundBorder;
@@ -45,17 +47,9 @@ public class BARMANOLO extends JFrame {
 				try {
 					BARMANOLO frame = new BARMANOLO();
 					frame.setVisible(true);
-					
-					try {
-					    interfazRMI obj = (interfazRMI) Naming.lookup("//127.0.0.1/API");
-						String mensajes = obj.getAPI("https://barmanolo.onrender.com/api/leer/mensajes");
-						procesarJson(mensajes);
-					} catch (java.rmi.ConnectException ce) {
-					    ce.printStackTrace();
-					    // Manejo específico de la excepción...
-					} catch (Exception e) {
-					    e.printStackTrace();
-					}
+			        String mensajes = ConexionMensajesHorario.leerAPI("https://barmanolo.onrender.com/api/leer/mensajes"); 
+			        List<mensaje_DTO> listamensajes = mensaje_DTO.deJsonAMensajes(mensajes);
+			
 			
 					
 				} catch (Exception e) {
@@ -65,46 +59,19 @@ public class BARMANOLO extends JFrame {
 		});
 	}
 
-	  public static void procesarJson(String jsonString) {
-	        // Elimina corchetes cuadrados para obtener solo el contenido del array JSON
-	        jsonString = jsonString.substring(1, jsonString.length() - 1);
+	public static List<mensaje_DTO> procesarJson(String jsonString) {
+	    Gson gson = new Gson();
 
-	        // Divide el string en objetos JSON separados
-	        String[] objetosJson = jsonString.split("\\},\\s*\\{");
+	    // Define el tipo de la lista
+	    java.lang.reflect.Type listType = new TypeToken<List<mensaje_DTO>>() {}.getType();
 
-	        // Lista para almacenar los HashMaps resultantes
-	        List<HashMap<String, String>> listaHashMaps = new ArrayList<>();
+	    // Convierte la cadena JSON en una lista de objetos Mensaje
+	    List<mensaje_DTO> mensajes = gson.fromJson(jsonString, listType);
+	    
+	    return mensajes;
+	}
+	
 
-	        for (String objetoJson : objetosJson) {
-	            // Elimina posibles corchetes restantes al principio o al final
-	            objetoJson = objetoJson.trim().replaceAll("^\\{|\\}$", "");
-
-	            // Divide el objeto JSON en pares clave-valor
-	            String[] paresClaveValor = objetoJson.split(",\\s*");
-
-	            // HashMap para almacenar el resultado
-	            HashMap<String, String> hashMap = new HashMap<>();
-
-	            // Itera sobre los pares clave-valor y los agrega al HashMap
-	            for (String par : paresClaveValor) {
-	                String[] partes = par.split(":");
-	                String clave = partes[0].replaceAll("^\"|\"$", "").trim();
-	                String valor = partes[1].replaceAll("^\"|\"$", "").trim();
-	                hashMap.put(clave, valor);
-	            }
-
-	            // Agrega el HashMap a la lista
-	            listaHashMaps.add(hashMap);
-
-	            // Llama a la función con el HashMap recién creado
-	            hacerAlgoConHashMap(hashMap);
-	        }
-	    }
-
-	    public static void hacerAlgoConHashMap(HashMap<String, String> hashMap) {
-	        // Aquí puedes realizar la operación que deseas con el HashMap
-	        System.out.println("HashMap: " + hashMap);
-	    }
 	/**
 	 * Create the frame.
 	 */
