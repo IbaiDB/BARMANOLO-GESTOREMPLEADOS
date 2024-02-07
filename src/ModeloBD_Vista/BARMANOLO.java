@@ -30,6 +30,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.CompoundBorder;
@@ -38,11 +39,17 @@ import javax.swing.JTextField;
 
 
 public class BARMANOLO extends JFrame {
+	
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfUsuario;
 	private JTextField tfDni;
+	
+	public static List<mensaje_DTO> listamensajes = new ArrayList<mensaje_DTO>();
+
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * Launch the application.
@@ -51,12 +58,13 @@ public class BARMANOLO extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BARMANOLO frame = new BARMANOLO();
-					frame.setVisible(true);
+					
+					ControladorVistas.abrirBarManolo();
+					
+					//Cargamos los datos de la API al principio de la app, asi disponemos de las listas y ahorramos futuras esperas
+					
 			        String mensajes = ConexionMensajesHorario.leerAPI("https://barmanolo.onrender.com/api/leer/mensajes"); 
-			        List<mensaje_DTO> listamensajes = mensaje_DTO.deJsonAMensajes(mensajes);
-			
-			
+			        listamensajes = mensaje_DTO.deJsonAMensajes(mensajes);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,25 +73,19 @@ public class BARMANOLO extends JFrame {
 		});
 	}
 
-	public static List<mensaje_DTO> procesarJson(String jsonString) {
-	    Gson gson = new Gson();
 
-	    // Define el tipo de la lista
-	    java.lang.reflect.Type listType = new TypeToken<List<mensaje_DTO>>() {}.getType();
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	    // Convierte la cadena JSON en una lista de objetos Mensaje
-	    List<mensaje_DTO> mensajes = gson.fromJson(jsonString, listType);
-	    
-	    return mensajes;
-	}
-	
 
 	/**
 	 * Create the frame.
 	 */
 	public BARMANOLO() {
+		
+		//----------------------------------------------------------------------------------------------------------------------------------------------------------
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 724, 611);
+		setBounds(100, 100, 724, 566);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 206, 209));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -94,49 +96,25 @@ public class BARMANOLO extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("DESCANSAR NO ES PERDER EL TIEMPO");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("Montserrat", Font.ITALIC, 17));
-		lblNewLabel_1.setBounds(292, 29, 394, 57);
+		lblNewLabel_1.setFont(new Font("Montserrat", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(302, 8, 394, 37);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("BAR MANOLO");
 		lblNewLabel.setFont(new Font("Montserrat", Font.BOLD, 22));
-		lblNewLabel.setBounds(20, 23, 217, 67);
+		lblNewLabel.setBounds(30, 0, 217, 48);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(30, 82, 666, 462);
+		panel.setBounds(30, 51, 666, 462);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnEntrar = new JButton("ENTRAR");
-		btnEntrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(comprobarLogin()) {
-					abrirGestorEmpleados();
-				}
-				else {
-		            JOptionPane.showMessageDialog(null, "Datos de usuario no válidos, pruebe de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-
-			private boolean comprobarLogin() {
-				empleado_DAO emp = new empleado_DAO();
-				if(emp.buscarPorDNI(tfDni.getText())!=null) {
-					empleado_DTO emple = emp.buscarPorDNI(tfDni.getText());
-					if(emple.getNombre().equals(tfUsuario.getText())) {
-						return true;
-					}
-
-				};
-				
-				return false;
-			}
-		});
 		btnEntrar.setFont(new Font("Montserrat", Font.BOLD, 12));
 		btnEntrar.setForeground(new Color(0, 0, 0));
 		btnEntrar.setBackground(new Color(255, 255, 255));
@@ -175,26 +153,74 @@ public class BARMANOLO extends JFrame {
 		panel.add(lblAcceso);
 		
 		JButton btnNewButton = new JButton("SALIR");
-		btnNewButton.setBounds(534, 556, 163, 31);
+		btnNewButton.setBounds(534, 525, 163, 31);
 		contentPane.add(btnNewButton);
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(255, 0, 0));
+		
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comprobarLogin()) {
+					ControladorVistas.abrirGestorEmpleados();
+					dispose();
+				}
+				else {
+		            JOptionPane.showMessageDialog(null, "Datos de usuario no válidos, pruebe de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+
+		});
+		
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				dispose();
-				
 			}
 		});
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 	
 	
-	public void abrirGestorEmpleados() {
-		
-		GestorEmpleados g1 = new GestorEmpleados();
-		g1.setVisible(true);
-		dispose();
-		
+	
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	public static List<mensaje_DTO> procesarJson(String jsonString) {
+	    Gson gson = new Gson();
+
+	    // Define el tipo de la lista
+	    java.lang.reflect.Type listType = new TypeToken<List<mensaje_DTO>>() {}.getType();
+
+	    // Convierte la cadena JSON en una lista de objetos Mensaje
+	    List<mensaje_DTO> mensajes = gson.fromJson(jsonString, listType);
+	    
+	    return mensajes;
 	}
+	
+	private boolean comprobarLogin() {
+		
+		empleado_DAO emp = new empleado_DAO();
+		
+		if(emp.buscarPorDNI(tfDni.getText())!=null) {
+			
+			empleado_DTO emple = emp.buscarPorDNI(tfDni.getText());
+			
+			if(emple.getNombre().equals(tfUsuario.getText())) {
+				
+				return true;
+			}
+
+		};
+		
+		return false;
+	}
+	
+	
+
+	
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	
 }

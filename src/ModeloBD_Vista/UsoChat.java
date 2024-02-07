@@ -16,6 +16,8 @@ import javax.swing.JMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UsoChat extends JDialog {
 
@@ -24,44 +26,34 @@ public class UsoChat extends JDialog {
 
 
 	public UsoChat(int pk) {
+		setResizable(false);
+		setAutoRequestFocus(false);
+		setFont(new Font("Montserrat", Font.PLAIN, 14));
 		
-		setBounds(100, 100, 1019, 596);
+		setBounds(100, 100, 1019, 595);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(117, 180, 249));
+		contentPanel.setBackground(new Color(0, 206, 209));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		{
-			JLabel lblNewLabel = new JLabel("USO DEL CHAT");
-			lblNewLabel.setForeground(new Color(255, 255, 255));
-			lblNewLabel.setBackground(new Color(255, 255, 255));
-			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 40));
-			lblNewLabel.setBounds(85, 35, 831, 76);
-			contentPanel.add(lblNewLabel);
-		}
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(122, 122, 733, 314);
+		textArea.setBounds(39, 49, 950, 450);
 		contentPanel.add(textArea);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 535, 1003, 22);
-		contentPanel.add(menuBar);
-		
-		JMenu mnVolver = new JMenu("VOVLER");
-		
-		
-		mnVolver.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				ConsultaEmple c1 = new ConsultaEmple(pk);
-				c1.setVisible(true);
+		JButton btnVolver = new JButton("VOLVER");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorVistas.abrirGestorEmpleados();
 				dispose();
+				
+			
 				
 			}
 		});
-		menuBar.add(mnVolver);
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setBackground(Color.RED);
+		btnVolver.setBounds(818, 511, 173, 44);
+		contentPanel.add(btnVolver);
 	}
 }

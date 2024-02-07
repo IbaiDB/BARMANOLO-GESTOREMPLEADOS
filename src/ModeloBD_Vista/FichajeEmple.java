@@ -27,6 +27,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.BevelBorder;
+
+
 
 public class FichajeEmple extends JDialog {
 
@@ -42,38 +45,13 @@ public class FichajeEmple extends JDialog {
 		
 		listaFich = fichaje.listarPorEmple(pk);
 		
-		getContentPane().setBackground(new Color(117, 180, 249));
-		setBounds(100, 100, 804, 558);
+		getContentPane().setBackground(new Color(0, 206, 209));
+		setBounds(100, 100, 782, 558);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(1024, 0, 1, 502);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(114, 149, 547, 353);
-		getContentPane().add(scrollPane);
-		
-		tbHorarios = new JTable();
-		tbHorarios.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Fecha Entrada", "Fecha Salida", "Hora Entrada", "Hora Salida"
-			}
-		));
-		tbHorarios.getColumnModel().getColumn(0).setPreferredWidth(87);
-		tbHorarios.getColumnModel().getColumn(2).setPreferredWidth(81);
-		scrollPane.setViewportView(tbHorarios);
-		
-		modelo = (DefaultTableModel) tbHorarios.getModel();
-		
-		JLabel lblNewLabel = new JLabel("HORARIO DEL EMPLEADO :");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(29, 55, 547, 72);
-		getContentPane().add(lblNewLabel);
 		
 		JLabel lblCodEmp = new JLabel("");
 		lblCodEmp.setForeground(new Color(255, 255, 255));
@@ -83,7 +61,8 @@ public class FichajeEmple extends JDialog {
 		getContentPane().add(lblCodEmp);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 788, 22);
+		menuBar.setBackground(new Color(255, 255, 255));
+		menuBar.setBounds(0, 0, 794, 22);
 		getContentPane().add(menuBar);
 		
 		JMenu mnReportes = new JMenu("REPORTES DE FICHAJES");
@@ -101,6 +80,45 @@ public class FichajeEmple extends JDialog {
 			}
 		});
 		menuBar.add(mnVolver);
+		
+		JLabel lblNewLabel = new JLabel("BAR MANOLO");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Montserrat", Font.BOLD, 22));
+		lblNewLabel.setBounds(50, 21, 217, 48);
+		getContentPane().add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(50, 66, 666, 439);
+		getContentPane().add(panel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 12, 642, 415);
+		panel.add(scrollPane);
+		
+		tbHorarios = new JTable();
+		tbHorarios.setBackground(new Color(255, 255, 255));
+		tbHorarios.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Fecha Entrada", "Fecha Salida", "Hora Entrada", "Hora Salida"
+			}
+		));
+		tbHorarios.getColumnModel().getColumn(0).setPreferredWidth(87);
+		tbHorarios.getColumnModel().getColumn(2).setPreferredWidth(81);
+		scrollPane.setViewportView(tbHorarios);
+		
+		JLabel lblReporteHorario = new JLabel("REPORTE HORARIO");
+		lblReporteHorario.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblReporteHorario.setForeground(Color.WHITE);
+		lblReporteHorario.setFont(new Font("Montserrat", Font.PLAIN, 17));
+		lblReporteHorario.setBounds(499, 23, 217, 48);
+		getContentPane().add(lblReporteHorario);
+		
+		modelo = (DefaultTableModel) tbHorarios.getModel();
 		
 		mostrarHorarios(modelo, listaFich);
 		
@@ -133,5 +151,4 @@ public class FichajeEmple extends JDialog {
 			modelo.addRow(fila);
 		}
 	}
-	
 }

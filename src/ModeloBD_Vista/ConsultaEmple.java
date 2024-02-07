@@ -24,6 +24,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ConsultaEmple extends JDialog {
+	
+	//------------------------------------------------VARIABLES GLOBALES  --------------------------------------
+
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -36,13 +39,17 @@ public class ConsultaEmple extends JDialog {
 	private JTextField tfSegso;
 	private JTextField tfCargo;
 	private empleado_DAO emple =  new empleado_DAO();
+	
+	
+	//-----------------------------------------------------------------------------------------------------------
+
 
 	public ConsultaEmple(int pk) {
 		
 		empleado_DTO este = emple.buscar(pk);
 		setBounds(100, 100, 783, 608);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(117, 180, 249));
+		contentPanel.setBackground(new Color(0, 206, 209));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -171,49 +178,6 @@ public class ConsultaEmple extends JDialog {
 		lblInformacinDetallada.setBounds(28, 16, 697, 93);
 		contentPanel.add(lblInformacinDetallada);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 548, 862, 22);
-		contentPanel.add(menuBar);
-		
-		JMenu mnUsoChat = new JMenu("USO DEL CHAT");
-		mnUsoChat.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				UsoChat u1 = new UsoChat(pk);
-				u1.setVisible(true);
-				dispose();
-				
-			}
-		});
-		menuBar.add(mnUsoChat);
-		
-		JMenu mnReporteHorario = new JMenu("REPORTE HORARIO");
-		mnReporteHorario.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				FichajeEmple f1 = new FichajeEmple(pk);
-				f1.setVisible(true);
-				dispose();
-				
-			}
-		});
-		menuBar.add(mnReporteHorario);
-		
-		JMenu mnVolver = new JMenu("VOLVER");
-		mnVolver.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-							
-				GestorEmpleados g1 = new GestorEmpleados();
-				g1.setVisible(true);
-				dispose();
-				
-			}
-		});
-		menuBar.add(mnVolver);
-		
 		tfNom.setText(este.getNombre());
 		tfDni.setText(este.getDni());
 		tfFnac.setText(este.getfNacimiento());
@@ -229,5 +193,54 @@ public class ConsultaEmple extends JDialog {
 		}else{
 			tfCargo.setText("Camarero");
 		}
+	
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 548, 862, 22);
+		contentPanel.add(menuBar);
+		
+		JMenu mnUsoChat = new JMenu("USO DEL CHAT");
+		JMenu mnReporteHorario = new JMenu("REPORTE HORARIO");
+		JMenu mnVolver = new JMenu("VOLVER");
+
+
+
+		//-----------------------------------------------------------------------------------------------------------
+
+		
+		mnUsoChat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ControladorVistas.abrirUsoChat(pk);
+				dispose();
+				
+			}
+		});
+		menuBar.add(mnUsoChat);
+		
+		mnReporteHorario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ControladorVistas.abrirFichajeEmpleado(pk);
+				dispose();
+				
+			}
+		});
+		
+		menuBar.add(mnReporteHorario);
+		
+		mnVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ControladorVistas.abrirGestorEmpleados();
+				dispose();
+			}
+		});
+		menuBar.add(mnVolver);
+		
+		//-----------------------------------------------------------------------------------------------------------
+
 	}
 }

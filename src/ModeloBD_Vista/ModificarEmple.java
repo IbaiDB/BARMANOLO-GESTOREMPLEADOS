@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
+import java.awt.SystemColor;
 
 public class ModificarEmple extends JDialog {
 
@@ -56,181 +57,176 @@ public class ModificarEmple extends JDialog {
 			JPanel contentPanel = new JPanel();
 			contentPanel.setLayout(null);
 			contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-			contentPanel.setBackground(new Color(117, 180, 249));
+			contentPanel.setBackground(new Color(0, 206, 209));
 			getContentPane().add(contentPanel, BorderLayout.CENTER);
 			{
 				JPanel panel = new JPanel();
 				panel.setLayout(null);
 				panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-				panel.setBackground(new Color(0, 0, 100));
-				panel.setBounds(31, 157, 583, 336);
+				panel.setBackground(new Color(255, 255, 255));
+				panel.setBounds(22, 59, 784, 391);
 				contentPanel.add(panel);
 				{
 					JLabel lblNombre = new JLabel("Nombre: ");
-					lblNombre.setForeground(Color.WHITE);
-					lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblNombre.setBounds(43, 29, 58, 22);
+					lblNombre.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblNombre.setForeground(new Color(0, 0, 0));
+					lblNombre.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblNombre.setBounds(45, 94, 89, 22);
 					panel.add(lblNombre);
 				}
 				{
 					tfNom = new JTextField();
 					tfNom.setColumns(10);
-					tfNom.setBounds(111, 31, 170, 22);
+					tfNom.setBounds(152, 95, 170, 22);
 					panel.add(tfNom);
 				}
 				{
 					JLabel lblDni = new JLabel("Dni:");
-					lblDni.setForeground(Color.WHITE);
-					lblDni.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblDni.setBounds(43, 78, 58, 22);
+					lblDni.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblDni.setForeground(new Color(0, 0, 0));
+					lblDni.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblDni.setBounds(76, 142, 58, 22);
 					panel.add(lblDni);
 				}
 				{
 					tfDni = new JTextField();
 					tfDni.setColumns(10);
-					tfDni.setBounds(89, 80, 146, 22);
+					tfDni.setBounds(152, 143, 146, 22);
 					panel.add(tfDni);
 				}
 				{
 					JLabel lblFnac = new JLabel("F.Nacimiento:");
-					lblFnac.setForeground(Color.WHITE);
-					lblFnac.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblFnac.setBounds(43, 120, 121, 22);
+					lblFnac.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblFnac.setForeground(new Color(0, 0, 0));
+					lblFnac.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblFnac.setBounds(12, 197, 122, 22);
 					panel.add(lblFnac);
 				}
 				{
 					tfFnac = new JTextField();
 					tfFnac.setColumns(10);
-					tfFnac.setBounds(150, 133, 170, 22);
+					tfFnac.setBounds(152, 198, 170, 22);
 					panel.add(tfFnac);
 				}
 				{
 					JLabel lblTel = new JLabel("Teléfono:");
-					lblTel.setForeground(Color.WHITE);
-					lblTel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblTel.setBounds(43, 178, 87, 22);
+					lblTel.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblTel.setForeground(new Color(0, 0, 0));
+					lblTel.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblTel.setBounds(355, 94, 87, 22);
 					panel.add(lblTel);
 				}
 				{
 					tfTel = new JTextField();
 					tfTel.setColumns(10);
-					tfTel.setBounds(121, 180, 160, 22);
+					tfTel.setBounds(457, 95, 160, 22);
 					panel.add(tfTel);
 				}
 				{
 					JLabel lblEmail = new JLabel("Email:");
-					lblEmail.setForeground(Color.WHITE);
-					lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblEmail.setBounds(43, 228, 87, 22);
+					lblEmail.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblEmail.setForeground(new Color(0, 0, 0));
+					lblEmail.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblEmail.setBounds(355, 141, 87, 22);
 					panel.add(lblEmail);
 				}
 				{
 					tfEmail = new JTextField();
 					tfEmail.setColumns(10);
-					tfEmail.setBounds(89, 230, 231, 22);
+					tfEmail.setBounds(457, 142, 231, 22);
 					panel.add(tfEmail);
 				}
 				{
 					JLabel lblSal = new JLabel("Salario: ");
-					lblSal.setForeground(Color.WHITE);
-					lblSal.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblSal.setBounds(43, 278, 58, 22);
+					lblSal.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblSal.setForeground(new Color(0, 0, 0));
+					lblSal.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblSal.setBounds(76, 260, 58, 22);
 					panel.add(lblSal);
 				}
 				{
 					tfSal = new JTextField();
 					tfSal.setColumns(10);
-					tfSal.setBounds(111, 280, 108, 22);
+					tfSal.setBounds(152, 261, 108, 22);
 					panel.add(tfSal);
 				}
 				{
 					JLabel lblCargo = new JLabel("Cargo:");
-					lblCargo.setForeground(Color.WHITE);
-					lblCargo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblCargo.setBounds(360, 26, 108, 28);
+					lblCargo.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblCargo.setForeground(new Color(0, 0, 0));
+					lblCargo.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblCargo.setBounds(334, 26, 108, 28);
 					panel.add(lblCargo);
 				}
 				{
 					rbtGerente = new JRadioButton("Gerente");
 					btgrpCargo.add(rbtGerente);
-					rbtGerente.setForeground(Color.WHITE);
+					rbtGerente.setForeground(new Color(0, 0, 0));
 					rbtGerente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					rbtGerente.setBackground(new Color(0, 0, 100));
-					rbtGerente.setBounds(328, 78, 109, 23);
+					rbtGerente.setBackground(new Color(255, 255, 255));
+					rbtGerente.setBounds(457, 29, 109, 23);
 					panel.add(rbtGerente);
 				}
 				{
 					rbtCamarero = new JRadioButton("Camarero");
 					btgrpCargo.add(rbtCamarero);
-					rbtCamarero.setForeground(Color.WHITE);
+					rbtCamarero.setForeground(new Color(0, 0, 0));
 					rbtCamarero.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					rbtCamarero.setBackground(new Color(0, 0, 100));
-					rbtCamarero.setBounds(457, 78, 109, 23);
+					rbtCamarero.setBackground(new Color(255, 255, 255));
+					rbtCamarero.setBounds(570, 29, 109, 23);
 					panel.add(rbtCamarero);
 				}
 				{
 					JLabel lblChat = new JLabel("Acceso a chat:");
-					lblChat.setForeground(Color.WHITE);
-					lblChat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblChat.setBounds(360, 128, 108, 28);
+					lblChat.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblChat.setForeground(new Color(0, 0, 0));
+					lblChat.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblChat.setBounds(334, 257, 108, 28);
 					panel.add(lblChat);
 				}
 				{
 					tgbtPermiso = new JToggleButton("No permitido");
+					tgbtPermiso.setBackground(new Color(255, 255, 255));
 					tgbtPermiso.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					tgbtPermiso.setBounds(389, 180, 121, 23);
+					tgbtPermiso.setBounds(457, 260, 161, 23);
 					panel.add(tgbtPermiso);
 				}
 				{
-					JLabel lblSegsoc = new JLabel("Núm. Seguridad Social:");
-					lblSegsoc.setForeground(Color.WHITE);
-					lblSegsoc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblSegsoc.setBounds(360, 228, 170, 28);
+					JLabel lblSegsoc = new JLabel("NUSS:");
+					lblSegsoc.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblSegsoc.setForeground(new Color(0, 0, 0));
+					lblSegsoc.setFont(new Font("Montserrat", Font.BOLD, 14));
+					lblSegsoc.setBounds(373, 194, 69, 28);
 					panel.add(lblSegsoc);
 				}
 				{
 					tfSegso = new JTextField();
 					tfSegso.setColumns(10);
-					tfSegso.setBounds(343, 281, 223, 22);
+					tfSegso.setBounds(457, 198, 223, 22);
 					panel.add(tfSegso);
 				}
 				{
 					JLabel lblFnac2 = new JLabel("(YYYY-MM-DD)");
-					lblFnac2.setForeground(Color.WHITE);
+					lblFnac2.setHorizontalAlignment(SwingConstants.CENTER);
+					lblFnac2.setForeground(new Color(0, 0, 0));
 					lblFnac2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					lblFnac2.setBounds(43, 140, 101, 22);
+					lblFnac2.setBounds(22, 215, 121, 22);
 					panel.add(lblFnac2);
 				}
-			}
-			{
-				JLabel lblModificacinDeEmpleado = new JLabel("MODIFICACIÓN DE EMPLEADO");
-				lblModificacinDeEmpleado.setHorizontalAlignment(SwingConstants.CENTER);
-				lblModificacinDeEmpleado.setForeground(Color.WHITE);
-				lblModificacinDeEmpleado.setFont(new Font("Tahoma", Font.BOLD, 46));
-				lblModificacinDeEmpleado.setBounds(31, 11, 717, 93);
-				contentPanel.add(lblModificacinDeEmpleado);
-			}
-			
-			tfNom.setText(este.getNombre());
-			tfDni.setText(este.getDni());
-			tfFnac.setText(este.getfNacimiento());
-			tfEmail.setText(este.getEmail());
-			tfSegso.setText(Long.toString(este.getNumSegSooc()));
-			tfTel.setText(Integer.toString(este.getTelefono()));
-			tfSal.setText(Double.toString(este.getSalario()));
-			if(este.isPermisoChat()){
-				tgbtPermiso.setSelected(true);
-			}
-			if(este.isTipo()){
-				rbtGerente.setSelected(true);
-			}else{
-				rbtCamarero.setSelected(true);
-			}
 				
 			
 			
 			{
 				JButton btnModificarEmpleado = new JButton("MODIFICAR EMPLEADO");
+				btnModificarEmpleado.setBackground(new Color(255, 255, 255));
+				btnModificarEmpleado.setBounds(225, 318, 265, 43);
+				panel.add(btnModificarEmpleado);
+				
+				JLabel lblSal = new JLabel("€");
+				lblSal.setForeground(Color.BLACK);
+				lblSal.setFont(new Font("Montserrat", Font.ITALIC, 12));
+				lblSal.setBounds(264, 260, 58, 22);
+				panel.add(lblSal);
 				btnModificarEmpleado.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -294,11 +290,28 @@ public class ModificarEmple extends JDialog {
 						
 					}
 				});
-				btnModificarEmpleado.setBounds(633, 224, 173, 66);
-				contentPanel.add(btnModificarEmpleado);
+			}
+			}
+			
+			tfNom.setText(este.getNombre());
+			tfDni.setText(este.getDni());
+			tfFnac.setText(este.getfNacimiento());
+			tfEmail.setText(este.getEmail());
+			tfSegso.setText(Long.toString(este.getNumSegSooc()));
+			tfTel.setText(Integer.toString(este.getTelefono()));
+			tfSal.setText(Double.toString(este.getSalario()));
+			if(este.isPermisoChat()){
+				tgbtPermiso.setSelected(true);
+			}
+			if(este.isTipo()){
+				rbtGerente.setSelected(true);
+			}else{
+				rbtCamarero.setSelected(true);
 			}
 			{
 				JButton btnVolver = new JButton("VOLVER");
+				btnVolver.setForeground(new Color(255, 255, 255));
+				btnVolver.setBackground(new Color(255, 0, 0));
 				btnVolver.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -308,10 +321,24 @@ public class ModificarEmple extends JDialog {
 						
 					}
 				});
-				btnVolver.setBounds(633, 365, 173, 44);
+				btnVolver.setBounds(633, 461, 173, 44);
 				contentPanel.add(btnVolver);
+			}
+			{
+				JLabel lblNewLabel = new JLabel("BAR MANOLO");
+				lblNewLabel.setForeground(Color.WHITE);
+				lblNewLabel.setFont(new Font("Montserrat", Font.BOLD, 22));
+				lblNewLabel.setBounds(22, 9, 217, 48);
+				contentPanel.add(lblNewLabel);
+			}
+			{
+				JLabel lblNewLabel_1 = new JLabel("MODIFICAR EMPLEADOS");
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
+				lblNewLabel_1.setForeground(Color.WHITE);
+				lblNewLabel_1.setFont(new Font("Montserrat", Font.PLAIN, 17));
+				lblNewLabel_1.setBounds(412, 10, 394, 37);
+				contentPanel.add(lblNewLabel_1);
 			}
 		}
 	}
-
 }
