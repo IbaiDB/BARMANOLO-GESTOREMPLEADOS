@@ -30,7 +30,7 @@ public class UsoChat extends JDialog {
 		setAutoRequestFocus(false);
 		setFont(new Font("Montserrat", Font.PLAIN, 14));
 		
-		setBounds(100, 100, 1019, 595);
+		setBounds(100, 100, 1019, 580);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(0, 206, 209));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,9 +45,8 @@ public class UsoChat extends JDialog {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControladorVistas.abrirGestorEmpleados();
-				dispose();
 				
-			
+				dispose();
 				
 			}
 		});
@@ -55,5 +54,6 @@ public class UsoChat extends JDialog {
 		btnVolver.setBackground(Color.RED);
 		btnVolver.setBounds(818, 511, 173, 44);
 		contentPanel.add(btnVolver);
+		
 	}
 }

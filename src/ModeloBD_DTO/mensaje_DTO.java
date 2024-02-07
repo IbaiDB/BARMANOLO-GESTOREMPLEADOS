@@ -7,10 +7,10 @@ import com.google.gson.reflect.TypeToken;
 
 public class mensaje_DTO {
 	
-        int idMensaje;
-        int idEmpleado;
-        String texto;
-        String fechahora;
+        public int idMensaje;
+        public int idEmpleado;
+        public String texto;
+        public String fechahora;
         
         
         public String toString() {
@@ -26,6 +26,8 @@ public class mensaje_DTO {
 
     	    // Convierte la cadena JSON en una lista de objetos Mensaje
     	    List<mensaje_DTO> mensajes = gson.fromJson(jsonString, listType);
+    	    
+    	    
     	    
     	    return mensajes;
     	}

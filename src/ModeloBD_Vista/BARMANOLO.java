@@ -20,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 
 import ConexionBD.ConexionMensajesHorario;
 import ModeloBD_DAO.empleado_DAO;
+import ModeloBD_DAO.mensaje_DAO;
 import ModeloBD_DTO.empleado_DTO;
 import ModeloBD_DTO.mensaje_DTO;
 
@@ -62,9 +63,8 @@ public class BARMANOLO extends JFrame {
 					ControladorVistas.abrirBarManolo();
 					
 					//Cargamos los datos de la API al principio de la app, asi disponemos de las listas y ahorramos futuras esperas
-					
-			        String mensajes = ConexionMensajesHorario.leerAPI("https://barmanolo.onrender.com/api/leer/mensajes"); 
-			        listamensajes = mensaje_DTO.deJsonAMensajes(mensajes);
+					descargarTablaMensajes();
+
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -215,6 +215,22 @@ public class BARMANOLO extends JFrame {
 		};
 		
 		return false;
+	}
+	
+	public static void descargarTablaMensajes() {
+        String mensajes = ConexionMensajesHorario.leerAPI("https://barmanolo.onrender.com/api/leer/mensajes"); 
+        listamensajes = mensaje_DTO.deJsonAMensajes(mensajes);
+        
+    	mensaje_DAO m = new mensaje_DAO();
+    	
+    	m.vaciarTabla();
+        
+        for (mensaje_DTO mensa : listamensajes) {
+        	
+        	m.insertar(mensa);
+			
+		}
+
 	}
 	
 	
