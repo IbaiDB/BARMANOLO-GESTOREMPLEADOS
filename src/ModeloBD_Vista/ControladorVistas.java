@@ -31,6 +31,12 @@ public class ControladorVistas {
 		c1.setVisible(true);
 		
 	}
+	
+	public static void abrirTiempo() {
+		Tiempo c1 = new Tiempo();
+		c1.setVisible(true);
+		
+	}
 
 	
 

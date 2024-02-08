@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ModeloBD_DTO.mensaje_DTO;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -41,6 +44,13 @@ public class UsoChat extends JDialog {
 		textArea.setBounds(39, 49, 950, 450);
 		contentPanel.add(textArea);
 		
+		for (mensaje_DTO mensaje : BARMANOLO.listamensajes) {
+		    if (mensaje.idEmpleado == (int)pk) {
+		        textArea.append(mensaje.toString() + "\n"); // Agregar el mensaje al textArea
+		    }
+		}
+
+
 		JButton btnVolver = new JButton("VOLVER");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/home/ibai/Descargas/jar_files/gson-2.8.2.jar"/>
 	<classpathentry kind="lib" path="/home/ibai/Descargas/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/ibai/Descargas/javax.xml.bind.jar"/>
+	<classpathentry kind="lib" path="/home/ibai/Descargas/org.json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

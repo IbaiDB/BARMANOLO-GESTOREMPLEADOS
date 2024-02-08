@@ -23,6 +23,7 @@ import ModeloBD_DAO.empleado_DAO;
 import ModeloBD_DAO.mensaje_DAO;
 import ModeloBD_DTO.empleado_DTO;
 import ModeloBD_DTO.mensaje_DTO;
+import interfaces.interfazRMI;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -60,11 +62,13 @@ public class BARMANOLO extends JFrame {
 			public void run() {
 				try {
 					
+		
+					
 					ControladorVistas.abrirBarManolo();
 					
 					//Cargamos los datos de la API al principio de la app, asi disponemos de las listas y ahorramos futuras esperas
 					descargarTablaMensajes();
-
+				
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -152,6 +156,16 @@ public class BARMANOLO extends JFrame {
 		lblAcceso.setBounds(12, 38, 642, 67);
 		panel.add(lblAcceso);
 		
+		JButton btnConsultaMeteorologica = new JButton("CONSULTA METEOROLOGICA");
+		btnConsultaMeteorologica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorVistas.abrirTiempo();
+			}
+		});
+		btnConsultaMeteorologica.setBackground(new Color(255, 255, 255));
+		btnConsultaMeteorologica.setBounds(424, 12, 230, 25);
+		panel.add(btnConsultaMeteorologica);
+		
 		JButton btnNewButton = new JButton("SALIR");
 		btnNewButton.setBounds(534, 525, 163, 31);
 		contentPane.add(btnNewButton);
@@ -232,11 +246,4 @@ public class BARMANOLO extends JFrame {
 		}
 
 	}
-	
-	
-
-	
-	//----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-	
 }
