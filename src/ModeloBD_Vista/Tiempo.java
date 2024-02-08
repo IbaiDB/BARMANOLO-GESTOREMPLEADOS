@@ -16,16 +16,22 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.Naming;
+import javax.swing.JTextArea;
 
 public class Tiempo extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+	
+	private interfazRMI tiempoRemoto=null;
 
 	/**
 	 * Create the dialog.
 	 */
 	public Tiempo() {
+		
 		setBounds(100, 100, 400, 300);
 		getContentPane().setLayout(new BorderLayout());
 		
@@ -37,7 +43,7 @@ public class Tiempo extends JDialog {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Montserrat", Font.BOLD, 12));
 		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Sestao", "Santander", "Vitoria-Gasteiz"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Sestao", "Santander", "Vitoria-Gasteiz", "Bilbao"}));
 		comboBox.setBounds(243, 12, 134, 24);
 		panel.add(comboBox);
 		
@@ -51,21 +57,55 @@ public class Tiempo extends JDialog {
 		JLabel lblMensajeDelServidor = new JLabel("MENSAJE DEL SERVIDOR:");
 		lblMensajeDelServidor.setFont(new Font("Montserrat", Font.BOLD, 12));
 		lblMensajeDelServidor.setForeground(new Color(255, 255, 255));
-		lblMensajeDelServidor.setBounds(101, 48, 189, 38);
+		lblMensajeDelServidor.setBounds(101, 46, 189, 38);
 		panel.add(lblMensajeDelServidor);
 		
-		JLabel lblToldo = new JLabel("TOLDO");
-		lblToldo.setForeground(Color.WHITE);
-		lblToldo.setFont(new Font("Montserrat", Font.BOLD, 12));
-		lblToldo.setBounds(101, 118, 213, 38);
-		panel.add(lblToldo);
+		JTextArea txtMensaje = new JTextArea();
+		txtMensaje.setFont(new Font("Montserrat", Font.PLAIN, 12));
+		txtMensaje.setBounds(52, 93, 271, 153);
+		panel.add(txtMensaje);
 		
-        try {
-            String nombreServidor = "TiempoServidor"; // El mismo nombre que usamos en el servidor
-            interfazRMI tiempoRemoto = (interfazRMI) Naming.lookup(nombreServidor);
-            tiempoRemoto.getTiempo(comboBox.getSelectedItem().toString()); // Llamada al método remoto
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		
+		
+		// TODO Auto-generated method stub
+		  try {
+	            String nombreServidor = "TiempoServidor"; // El mismo nombre que usamos en el servidor
+	            tiempoRemoto = (interfazRMI) Naming.lookup(nombreServidor);
+	            if (tiempoRemoto != null) {
+	                String tiempo = tiempoRemoto.getTiempo(comboBox.getSelectedItem().toString()); // Llamada al método remoto
+	                System.out.println("tiempo" + tiempo);
+	                txtMensaje.setText(tiempo);
+	              
+	            } else {
+	                System.out.println("El objeto remoto es nulo.");
+	            }
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+		
+		
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				  try {
+			          
+			            if (tiempoRemoto != null) {
+			                tiempoRemoto.getTiempo(comboBox.getSelectedItem().toString());
+			                System.out.println(comboBox.getSelectedItem().toString());
+			            } else {
+			                System.out.println("El objeto remoto es nulo.");
+			            }
+			        } catch (Exception ex) {
+			            ex.printStackTrace();
+			        }
+			}
+		});
+		
+		
+
+		
+
 	}
 }

@@ -4,5 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface interfazRMI extends Remote{
-    void getTiempo(String nombreciudad) throws RemoteException ;
+	
+    String getTiempo(String nombreciudad) throws RemoteException ;
+    
 }
